@@ -123,7 +123,7 @@ public class prueba {
                     if(root.left == null && root.right== null)
                         root.data = '0';
                     
-                    if(root.left != null || root.right!= null)
+                    if((root.left != null && root.right== null )|| (root.right!= null && root.left== null))
                         root.data = ' ';
                     
                     
@@ -159,7 +159,7 @@ public class prueba {
                     if(root.left == null && root.right== null)
                         root.data = '0';
                     
-                    if(root.left != null || root.right!= null)
+                    if((root.left != null && root.right== null )|| (root.right!= null && root.left== null))
                         root.data = ' ';
                     
                     
@@ -243,7 +243,7 @@ public class prueba {
 
 	public static void main(String[] args)
 	{
-		String postfix = "2x*2x**";
+		String postfix = "x5*x*";
 		Node root = construct(postfix);
 
 		System.out.print("Postfix Expression: ");
