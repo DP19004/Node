@@ -169,13 +169,38 @@ public class prueba {
                 
                     //  tiene errores todavia
                 case '*':
-                  root.data='+';
+                  if (!isOperator(root.right) && !Verificar(root.right) || !isOperator(root.left) && !Verificar(root.left))
+                        {
+                            if (!isOperator(root.right) && !Verificar(root.right) && !isOperator(root.left) && !Verificar(root.left))
+                            {
+                                root.data='0';
+                                root.right = null;
+                                root.left=null;
+                                break;
+                            }
+                            if (!isOperator(root.left) && !Verificar(root.left))
+                            {
+                                root.right=Derivada(root.right);
+                                break;
+                            }
+                            if (!isOperator(root.right) && !Verificar(root.right))
+                            {
+                                
+                            root.left=Derivada(root.left);
+                            break;
+                            }
+                            
+                        }
+                  else
+                  {
+                    root.data='+';
+                  
                   Node x = new Node('*', Derivada(root.left), root.right);
                   Node y = new Node('*', root.left, Derivada(root.right));
                    root.left=x;
                    root.right=y;
                     
-                    
+                  } 
                     break;
                     
                     
@@ -218,7 +243,7 @@ public class prueba {
 
 	public static void main(String[] args)
 	{
-		String postfix = "5x*";
+		String postfix = "2x*2x**";
 		Node root = construct(postfix);
 
 		System.out.print("Postfix Expression: ");
