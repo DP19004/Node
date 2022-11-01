@@ -167,6 +167,7 @@ public class prueba {
                     Derivada(root.right);
                     break;
                 
+                    //  tiene errores todavia
                 case '*':
                   root.data='+';
                   Node x = new Node('*', Derivada(root.left), root.right);
@@ -178,18 +179,19 @@ public class prueba {
                     break;
                     
                     
-               case '/': 
+               case '/':
+                   
+                   
                 break;
                 
                 case 'x':
                     root.data='1';
                 break;
-                
+                // default se encarga de los numeros si no me equivoco
                default:
                    root.data = '0';
 
-                  // Derivada(root.left);
-                 //  Derivada(root.right);
+                  
                    break;
                }
                
