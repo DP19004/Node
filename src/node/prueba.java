@@ -119,7 +119,7 @@ public class prueba {
                         root.right = null;
                         }
                     
-                    
+  
                     if(root.left == null && root.right== null)
                         root.data = '0';
                     
@@ -168,7 +168,7 @@ public class prueba {
                     break;
                 
                     //  tiene errores todavia
-                case '*':
+               /** case '*':
                   if (!isOperator(root.right) && !Verificar(root.right) || !isOperator(root.left) && !Verificar(root.left))
                         {
                             if (!isOperator(root.right) && !Verificar(root.right) && !isOperator(root.left) && !Verificar(root.left))
@@ -177,16 +177,17 @@ public class prueba {
                                 root.right = null;
                                 root.left=null;
                                 break;
-                            }
-                            if (!isOperator(root.left) && !Verificar(root.left))
+                            }                 
+
+                            if (!isOperator(root.right) && Verificar(root.left))
                             {
-                                root.right=Derivada(root.right);
+                                root.left=Derivada(root.left);
                                 break;
                             }
-                            if (!isOperator(root.right) && !Verificar(root.right))
+                            if (!isOperator(root.right) && Verificar(root.right))
                             {
                                 
-                            root.left=Derivada(root.left);
+                            root.right=Derivada(root.right);
                             break;
                             }
                             
@@ -203,20 +204,35 @@ public class prueba {
                   } 
                     break;
                     
-                    
                case '/':
                    
                    
+                    
                 break;
-                
+                */
                 case 'x':
                     root.data='1';
                 break;
                 // default se encarga de los numeros si no me equivoco
                default:
-                   root.data = '0';
-
-                  
+                   
+                   if(root.data=='*')
+                   {
+                  System.out.print("\n Aun no podemos derivar multiplicaciones \n");
+                   root.data = ' ';
+                   root.right = null;
+                   root.left = null;
+                   }
+                   else
+                       if(root.data=='/')
+                           {
+                  System.out.print("\n Aun no podemos derivar divisiones  \n");
+                   root.data = ' ';
+                   root.right = null;
+                   root.left = null;
+                   }
+                   else
+                  root.data = '0';
                    break;
                }
                
@@ -243,19 +259,22 @@ public class prueba {
 
 	public static void main(String[] args)
 	{
-		String postfix = "x5*x*";
+		String postfix = "05-x*6x*+";
 		Node root = construct(postfix);
 
 		System.out.print("Postfix Expression: ");
 		postorder(root);
-
+                System.out.print("\n"); 
+                
 		System.out.print("\nInfix Expression: ");
 		inorder(root);
                 
+                System.out.print("\n");
                 System.out.print("\nDerivada: ");
+                
 		inorder(Derivada(root)); 
                 System.out.print("\n");
-                System.out.print("\n");
+               
 
 	}  
 }
