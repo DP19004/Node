@@ -109,8 +109,12 @@ public class prueba {
             
                switch (roo.data) 
                {
+                   
+
+
 
                 case '+':
+                    /**
                     if (!isOperator(roo.left) && !Verificar(roo.left))
                     {
                         roo.left = null;
@@ -126,7 +130,7 @@ public class prueba {
                     
                     if((roo.left != null && roo.right== null )|| (roo.right!= null && roo.left== null))
                         roo.data = ' ';
-                    
+                     */
                     
                     Derivada(roo.left);
                     Derivada(roo.right);
@@ -150,6 +154,7 @@ public class prueba {
                     
                     
                 case '-':
+                    /**
                     if (!isOperator(roo.left) && !Verificar(roo.left))
                     {
                         roo.left = null;
@@ -165,7 +170,7 @@ public class prueba {
                     
                     if((roo.left != null && roo.right== null )|| (roo.right!= null && roo.left== null))
                         roo.data = ' ';
-                    
+                    */
                     
                     Derivada(roo.left);
                     Derivada(roo.right);
@@ -250,14 +255,14 @@ public class prueba {
             
         
         }
-                        public static Node Disminuir(Node root)
-                        {
-                            int a=Character.getNumericValue(root.data);
-                            a=a-1;
-                            root.data=(char)('0' + a);
-                            
-                         return root ;
-                        }
+             public static Node Disminuir(Node root)
+                  {
+                    int a=Character.getNumericValue(root.data);
+                     a=a-1;
+                     root.data=(char)('0' + a);
+                      
+                     return root ;
+                  }
 
         
                 public static boolean Verificar(Node root)
@@ -267,7 +272,7 @@ public class prueba {
 
 	public static void main(String[] args)
 	{
-		String postfix = "x5^x5^*";
+		String postfix = "xx*";
 		Node root = construct(postfix);
 
 		System.out.print("Postfix Expression: ");
