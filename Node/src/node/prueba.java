@@ -98,144 +98,152 @@ public class prueba {
 	}
         
         //retorna un node
-        public static Node Derivada(Node root)
+        public static Node Derivada(Node roo)
         {
-            if (root == null) 
+            Node root;
+            if (roo == null) 
                 {
-	         return root;
+	         return roo;
 		}
             
             
-               switch (root.data) 
+               switch (roo.data) 
                {
 
                 case '+':
-                    if (!isOperator(root.left) && !Verificar(root.left))
+                    if (!isOperator(roo.left) && !Verificar(roo.left))
                     {
-                        root.left = null;
+                        roo.left = null;
                     }
-                    if (!isOperator(root.right) && !Verificar(root.right))
+                    if (!isOperator(roo.right) && !Verificar(roo.right))
                         {
-                        root.right = null;
+                        roo.right = null;
                         }
                     
   
-                    if(root.left == null && root.right== null)
-                        root.data = '0';
+                    if(roo.left == null && roo.right== null)
+                        roo.data = '0';
                     
-                    if((root.left != null && root.right== null )|| (root.right!= null && root.left== null))
-                        root.data = ' ';
+                    if((roo.left != null && roo.right== null )|| (roo.right!= null && roo.left== null))
+                        roo.data = ' ';
                     
                     
-                    Derivada(root.left);
-                    Derivada(root.right);
+                    Derivada(roo.left);
+                    Derivada(roo.right);
                     break;
                     
                 case '^':
-                    if(Verificar(root.left))
+                    if(Verificar(roo.left))
                     {
-                     root.right=Disminuir(root.right);
+                     roo.right=Disminuir(roo.right);
+                      root = roo;
                      break;
                     }
-                    if(Verificar(root.right))
+                    if(Verificar(roo.right))
                     {
-                     root.left=Disminuir(root.left);
+                     roo.left=Disminuir(roo.left);
+                      root = roo;
+
                      break;
                     }
                     break;
                     
                     
                 case '-':
-                    if (!isOperator(root.left) && !Verificar(root.left))
+                    if (!isOperator(roo.left) && !Verificar(roo.left))
                     {
-                        root.left = null;
+                        roo.left = null;
                     }
-                    if (!isOperator(root.right) && !Verificar(root.right))
+                    if (!isOperator(roo.right) && !Verificar(roo.right))
                         {
-                        root.right = null;
+                        roo.right = null;
                         }
                     
                     
-                    if(root.left == null && root.right== null)
-                        root.data = '0';
+                    if(roo.left == null && roo.right== null)
+                        roo.data = '0';
                     
-                    if((root.left != null && root.right== null )|| (root.right!= null && root.left== null))
-                        root.data = ' ';
+                    if((roo.left != null && roo.right== null )|| (roo.right!= null && roo.left== null))
+                        roo.data = ' ';
                     
                     
-                    Derivada(root.left);
-                    Derivada(root.right);
+                    Derivada(roo.left);
+                    Derivada(roo.right);
                     break;
                 
                     //  tiene errores todavia
-               /** case '*':
-                  if (!isOperator(root.right) && !Verificar(root.right) || !isOperator(root.left) && !Verificar(root.left))
+               case '*':
+                  if (!isOperator(roo.right) && !Verificar(roo.right) || !isOperator(roo.left) && !Verificar(roo.left))
                         {
-                            if (!isOperator(root.right) && !Verificar(root.right) && !isOperator(root.left) && !Verificar(root.left))
+                            if (!isOperator(roo.right) && !Verificar(roo.right) && !isOperator(roo.left) && !Verificar(roo.left))
                             {
-                                root.data='0';
-                                root.right = null;
-                                root.left=null;
+                                roo.data='0';
+                                roo.right = null;
+                                roo.left=null;
                                 break;
                             }                 
 
-                            if (!isOperator(root.right) && Verificar(root.left))
+                            if (!isOperator(roo.right) && Verificar(roo.left))
                             {
-                                root.left=Derivada(root.left);
+                                roo.left=Derivada(roo.left);
                                 break;
                             }
-                            if (!isOperator(root.right) && Verificar(root.right))
+                            if (!isOperator(roo.right) && Verificar(roo.right))
                             {
                                 
-                            root.right=Derivada(root.right);
+                            roo.right=Derivada(roo.right);
                             break;
                             }
                             
                         }
                   else
                   {
-                    root.data='+';
-                  
-                  Node x = new Node('*', Derivada(root.left), root.right);
-                  Node y = new Node('*', root.left, Derivada(root.right));
-                   root.left=x;
-                   root.right=y;
-                    
-                  } 
+                    roo.data='+';
+                  root = roo;
+                  Node x = new Node('*');
+                  x.left=Derivada(root.left);
+                  x.right= root.right;
+                  Node y = new Node('*', roo.left, Derivada(roo.right));
+                  y.left=root.left;
+                   roo.left=x;
+                   roo.right=y;
+                    root = roo; 
                     break;
+                  } 
+                   
                     
                case '/':
                    
                    
                     
                 break;
-                */
+                
                 case 'x':
-                    root.data='1';
+                    roo.data='1';
                 break;
                 // default se encarga de los numeros si no me equivoco
                default:
                    
-                   if(root.data=='*')
+                   if(roo.data=='*')
                    {
                   System.out.print("\n Aun no podemos derivar multiplicaciones \n");
-                   root.data = ' ';
-                   root.right = null;
-                   root.left = null;
+                   roo.data = ' ';
+                   roo.right = null;
+                   roo.left = null;
                    }
                    else
-                       if(root.data=='/')
+                       if(roo.data=='/')
                            {
                   System.out.print("\n Aun no podemos derivar divisiones  \n");
-                   root.data = ' ';
-                   root.right = null;
-                   root.left = null;
+                   roo.data = ' ';
+                   roo.right = null;
+                   roo.left = null;
                    }
                    else
-                  root.data = '0';
+                  roo.data = '0';
                    break;
                }
-               
+               root=roo;
             
             
             return root;
@@ -259,7 +267,7 @@ public class prueba {
 
 	public static void main(String[] args)
 	{
-		String postfix = "05-x*6x*+";
+		String postfix = "x5^x5^*";
 		Node root = construct(postfix);
 
 		System.out.print("Postfix Expression: ");
